@@ -9,8 +9,11 @@ authors = [
 requires-python = ">=3.9"
 dependencies = [
     "ipykernel>=6.31.0",
+    "maturin>=1.15.0",
     "pandas>=2.3.3",
+    "scikit-learn>=1.6.1",
     "seaborn>=0.13.2",
+    "tin-man-py>=0.5.1",
 ]
 
 [project.scripts]

@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import os
 import json
+from common import data_split_train_test
+
 
 CSV_PATH = 'data/raw/PRSA_data_2010.1.1-2014.12.31.csv'
 TARGET = 'pm2_5'
@@ -95,25 +97,6 @@ def feature_engineering(df_clean: pd.DataFrame) -> pd.DataFrame:
     return df_final, continuos_columns, binary_cols
 
 
-
-
-def data_split_train_test(df_preprocessed: pd.DataFrame) -> pd.DataFrame:
-    df_local = df_preprocessed.copy()
-
-    df_len = df_local.shape[0]
-    index_70_per = int(df_len * (1 - PROPORTION_VALIDATION_DATASET))
-
-    # split train and test - method = out-of-time
-    train = df_local.iloc[:index_70_per].reset_index(drop = True)
-    test = df_local.iloc[index_70_per:].reset_index(drop = True)
-
-    return train, test
-
-
-
-
-
-
 def main():
 
     # 1. Load and Clean dataset
@@ -125,7 +108,7 @@ def main():
     print('Step 2: Preprocessing - OK')
 
     # 3. Train and Test Separation - method out-of-time
-    train, test = data_split_train_test(df_preprocessed = df_preprocessed) 
+    train, test = data_split_train_test(df_preprocessed = df_preprocessed, proportion_test = PROPORTION_VALIDATION_DATASET) 
     
     # 4. Saving datasets
     test.to_csv(os.path.join(DIR_DF_EVALUATION, 'validation_dataset.csv'), index = False)
