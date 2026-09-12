@@ -1,0 +1,23 @@
+{
+ "continuos_features": [
+  "year",
+  "dewp",
+  "temp",
+  "pres",
+  "iws",
+  "is",
+  "ir",
+  "month_sin",
+  "month_cos",
+  "hour_sin",
+  "hour_cos"
+ ],
+ "binary_features": [
+  "cbwd_NE",
+  "cbwd_NW",
+  "cbwd_SE",
+  "cbwd_cv"
+ ],
+ "target_column": "pm2_5",
+ "test_proportion": 0.3
+}
